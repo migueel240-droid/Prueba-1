@@ -1,10 +1,9 @@
 {
-  "name": "Tortillería Obregón - Ventas",
+  "name": "Tortillería Obregón",
   "short_name": "Tortillería",
-  "description": "Control local de ventas, clientes, créditos y reparto.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f4f7f4",
-  "theme_color": "#14532d",
-  "lang": "es-MX"
+  "background_color": "#eef4fa",
+  "theme_color": "#0757a6",
+  "description": "Ventas e inventario por repartidor"
 }

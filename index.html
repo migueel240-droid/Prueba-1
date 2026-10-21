@@ -1,166 +1,107 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#14532d">
-<title>Tortillería Obregón | Ventas</title>
-<link rel="manifest" href="manifest.json">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0757a6"><link rel="manifest" href="manifest.json">
+<title>Tortillería Obregón · Ventas</title>
 <style>
-:root{--green:#14532d;--green2:#166534;--gold:#facc15;--bg:#f4f7f4;--ink:#17221a;--muted:#66736a;--line:#dce5dd;--red:#b91c1c}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-header{background:var(--green);color:white;padding:18px 16px 14px;position:sticky;top:0;z-index:2;box-shadow:0 2px 8px #0002}
-header .brand{font-size:20px;font-weight:800;letter-spacing:.2px}header small{display:block;color:#d8eadc;margin-top:3px}
-nav{display:flex;gap:7px;overflow:auto;padding:10px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:74px;z-index:2}
-nav button{white-space:nowrap;border:1px solid var(--line);background:white;color:var(--green);border-radius:10px;padding:9px 12px;font-weight:700}
-nav button.active{background:var(--green);color:white}
-main{max-width:920px;margin:auto;padding:14px}
-section{display:none}section.active{display:block}
-h2{font-size:20px;margin:8px 0 14px}h3{font-size:16px;margin:8px 0}
-.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.card,.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 1px 2px #00000008}
-.metric{font-size:24px;font-weight:800;color:var(--green);margin-top:4px}.muted{color:var(--muted);font-size:13px}
-label{display:block;font-weight:650;margin:10px 0 5px}
-input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5ce;border-radius:9px;background:#fff;font:inherit;color:var(--ink)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-button.primary,button.secondary,button.danger{border:0;border-radius:10px;padding:11px 14px;font-weight:750;font:inherit;cursor:pointer}
-button.primary{background:var(--green2);color:white}button.secondary{background:#e7efe8;color:var(--green)}button.danger{background:#fee2e2;color:var(--red)}
-button:disabled{opacity:.5}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:9px 6px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-size:12px;text-transform:uppercase}
-.tablewrap{overflow:auto}.pill{display:inline-block;padding:3px 8px;border-radius:20px;background:#e7efe8;color:var(--green);font-size:12px;font-weight:700}
-.empty{padding:20px;text-align:center;color:var(--muted)}
-.notice{background:#fff7d6;border:1px solid #f1dc85;border-radius:12px;padding:12px;font-size:13px;margin-bottom:12px}
-small.help{color:var(--muted);display:block;margin-top:5px}
-@media(min-width:650px){.cards{grid-template-columns:repeat(4,minmax(0,1fr))}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.formgrid .panel{margin-bottom:0}}
-</style>
-</head>
+:root{--blue:#0757a6;--blue2:#0b76d1;--yellow:#ffd43b;--white:#fff;--ink:#132238;--bg:#eef4fa;--line:#d7e2ee}
+*{box-sizing:border-box}body{margin:0;font:16px system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--blue);color:white;padding:16px 14px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0002}
+header h1{font-size:20px;margin:0}header small{opacity:.9}
+nav{display:flex;gap:7px;overflow:auto;padding:9px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:66px;z-index:4}
+button,.btn{border:0;border-radius:10px;padding:11px 13px;font-weight:700;background:var(--blue);color:white;cursor:pointer;font-size:14px}
+button.secondary{background:#e5edf6;color:var(--blue)}button.yellow{background:var(--yellow);color:#172b42}button.danger{background:#b42318}
+nav button{white-space:nowrap;padding:10px 12px}nav button.active{background:var(--yellow);color:#172b42}
+main{max-width:900px;margin:auto;padding:14px}.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:13px;box-shadow:0 2px 7px #1231}
+h2{font-size:19px;margin:0 0 12px;color:var(--blue)}h3{margin:8px 0;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+label{display:block;font-size:13px;font-weight:700;margin:8px 0 4px}input,select{width:100%;padding:11px;border:1px solid #bdcddd;border-radius:9px;font:inherit;background:#fff;color:var(--ink)}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1;min-width:0}.muted{color:#64748b;font-size:13px}.money{font-weight:800;color:var(--blue)}.product{border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}.product img{width:58px;height:58px;object-fit:cover;border-radius:9px;background:#e8eef5}.product .details{flex:1;min-width:0}.product strong{display:block}.qty{display:flex;gap:6px;align-items:center}.qty input{width:62px;padding:8px;text-align:center}.itemline{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:8px 0}.hidden{display:none!important}.tag{display:inline-block;background:#e8f2ff;color:var(--blue);padding:3px 8px;border-radius:99px;font-size:12px;font-weight:700}.notice{background:#fff7d6;border:1px solid #f1d56b;padding:10px;border-radius:9px;font-size:13px}.empty{text-align:center;padding:20px;color:#64748b}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1}.photo{width:100%;max-width:90px;border-radius:8px}.small{font-size:12px}.right{text-align:right}
+@media(max-width:420px){main{padding:9px}.panel{padding:11px}header{padding:13px}nav{top:60px}}
+</style></head>
 <body>
-<header><div class="brand">🌽 Tortillería Obregón</div><small>Control de ventas · contado, crédito y repartidores</small></header>
+<header><h1>🌽 Tortillería Obregón</h1><small>Ventas e inventario · Funciona sin conexión en este dispositivo</small></header>
 <nav id="nav">
-<button class="active" data-tab="inicio">Inicio</button><button data-tab="venta">Nueva venta</button><button data-tab="ventas">Ventas</button><button data-tab="clientes">Clientes</button><button data-tab="productos">Productos</button><button data-tab="reparto">Carga y sobrantes</button><button data-tab="admin">Administrador</button>
+<button class="active" data-tab="venta">Venta</button><button data-tab="inventario">Inventario</button><button data-tab="productos">Productos</button><button data-tab="historial">Historial</button><button data-tab="ajustes">Ajustes</button>
 </nav>
 <main>
-<section id="inicio" class="active">
-<h2>Resumen del día</h2>
-<div class="cards">
-<div class="card"><div class="muted">Ventas registradas</div><div class="metric" id="mVentas">$0.00</div><div class="muted" id="mCant">0 operaciones</div></div>
-<div class="card"><div class="muted">Cobrado de contado</div><div class="metric" id="mContado">$0.00</div></div>
-<div class="card"><div class="muted">Crédito vendido</div><div class="metric" id="mCredito">$0.00</div></div>
-<div class="card"><div class="muted">Saldo pendiente</div><div class="metric" id="mSaldo">$0.00</div></div>
-</div>
-<div class="panel"><h3>Acciones rápidas</h3><div class="actions"><button class="primary" onclick="showTab('venta')">+ Registrar venta</button><button class="secondary" onclick="showTab('reparto')">Registrar carga</button><button class="secondary" onclick="exportBackup()">Respaldar datos</button></div></div>
-<div class="notice">Esta primera versión guarda los datos en este navegador y en este teléfono. Usa “Respaldar datos” con frecuencia. No sincroniza automáticamente entre teléfonos.</div>
-<div class="panel"><h3>Últimas ventas</h3><div id="recent"></div></div>
+<section id="tab-venta">
+<div class="panel"><h2>Nueva venta / ticket</h2><div class="grid">
+<div><label>Repartidor</label><select id="saleDriver"></select></div>
+<div><label>Tipo de venta</label><select id="saleType"><option value="contado">Contado</option><option value="credito">Crédito</option></select></div>
+<div id="customerWrap" class="hidden"><label>Cliente de crédito</label><input id="customer" placeholder="Nombre del cliente"></div>
+</div><label>Buscar producto</label><input id="productSearch" placeholder="Escribe el nombre del producto…">
+<div id="saleProducts" style="display:grid;gap:8px;margin-top:10px"></div>
+<h3>Productos en este ticket</h3><div id="cart"></div>
+<div class="itemline"><strong>Total del ticket</strong><strong class="money" id="cartTotal">$0.00</strong></div>
+<div class="actions"><button class="yellow" id="finishSale">✓ Terminar venta y emitir ticket</button><button class="secondary" id="clearCart">Vaciar ticket</button></div>
+<div id="saleMessage" class="muted" aria-live="polite"></div></div>
+<div class="panel"><h2>Último ticket</h2><div id="lastTicket" class="muted">Todavía no hay ventas.</div><button class="secondary" id="printTicket">Imprimir / guardar ticket</button></div>
 </section>
-
-<section id="venta">
-<h2>Nueva venta</h2>
-<div class="panel">
-<form id="saleForm">
-<div class="row"><div><label for="saleDate">Fecha</label><input id="saleDate" type="date" required></div><div><label for="saleType">Tipo de venta</label><select id="saleType"><option value="contado">Contado</option><option value="credito">Crédito</option></select></div></div>
-<label for="saleCustomer">Cliente</label><select id="saleCustomer"><option value="">Venta mostrador / público general</option></select>
-<label for="saleProduct">Producto</label><select id="saleProduct" required></select>
-<div class="row"><div><label for="saleQty">Cantidad</label><input id="saleQty" type="number" min="1" step="1" value="1" required></div><div><label for="salePrice">Precio unitario ($)</label><input id="salePrice" type="number" min="0" step=".01" required></div></div>
-<label for="saleNote">Nota (opcional)</label><input id="saleNote" maxlength="140" placeholder="Ej. ruta, folio o comentario">
-<div class="card"><div class="muted">Total de la venta</div><div class="metric" id="saleTotal">$0.00</div></div>
-<button class="primary" type="submit" style="width:100%">Guardar venta</button>
-</form>
-</div>
+<section id="tab-inventario" class="hidden">
+<div class="panel"><h2>Inventario por repartidor</h2><p class="muted">Registra la carga que sale con cada repartidor. Las ventas se descuentan automáticamente del inventario cargado.</p>
+<label>Selecciona repartidor</label><select id="invDriver"></select>
+<div class="grid"><div><label>Movimiento</label><select id="invType"><option value="carga">Carga inicial / agregar carga</option><option value="sobrante">Sobrantes contados al regresar</option><option value="devolucion">Devoluciones</option><option value="danado">Producto dañado</option><option value="ajuste">Ajuste de existencia contada</option></select></div><div><label>Producto</label><select id="invProduct"></select></div><div><label>Cantidad</label><input id="invQty" type="number" min="1" step="1" value="1"></div></div>
+<div class="actions"><button id="saveMovement">Guardar movimiento</button></div><div id="invMessage" class="muted"></div></div>
+<div class="panel"><h2>Existencia del repartidor</h2><div id="inventoryTable"></div></div>
+<div class="panel"><h2>Cierre de ruta</h2><p class="muted">Compara la existencia esperada con la existencia física contada. Registra el conteo y revisa diferencias.</p><div id="closeRoute"></div><div class="actions"><button class="yellow" id="checkInventory">Comparar existencia esperada vs. contada</button></div><div id="inventoryDiff"></div></div>
 </section>
-
-<section id="ventas">
-<h2>Historial de ventas</h2>
-<div class="panel"><label for="filterSales">Buscar por cliente o producto</label><input id="filterSales" placeholder="Escribe para filtrar..."><div class="tablewrap" id="salesTable"></div></div>
-</section>
-
-<section id="clientes">
-<h2>Clientes y saldos</h2>
-<div class="panel"><h3>Agregar cliente</h3><form id="customerForm"><label for="custName">Nombre del cliente</label><input id="custName" required maxlength="80" placeholder="Nombre o negocio"><div class="row"><div><label for="custPhone">Teléfono (opcional)</label><input id="custPhone" inputmode="tel" maxlength="20"></div><div><label for="custNotes">Referencia (opcional)</label><input id="custNotes" maxlength="100" placeholder="Colonia, ruta..."></div></div><button class="primary" type="submit" style="margin-top:12px">Guardar cliente</button></form></div>
-<div class="panel"><h3>Clientes registrados</h3><div id="customerTable"></div></div>
-<div class="panel"><h3>Registrar abono a crédito</h3><form id="paymentForm"><label for="payCustomer">Cliente</label><select id="payCustomer" required></select><div class="row"><div><label for="payAmount">Abono ($)</label><input id="payAmount" type="number" min=".01" step=".01" required></div><div><label for="payDate">Fecha</label><input id="payDate" type="date" required></div></div><label for="payNote">Nota (opcional)</label><input id="payNote" maxlength="120"><button class="primary" type="submit" style="margin-top:12px">Guardar abono</button></form></div>
-</section>
-
-<section id="productos">
-<h2>Productos y precios</h2>
-<div class="notice">Puedes registrar productos y precios aquí. En esta versión cualquier cambio se guarda localmente en este teléfono; la protección con contraseña aún no está configurada.</div>
-<div class="panel"><h3>Agregar producto</h3><form id="productForm"><label for="prodName">Nombre del producto</label><input id="prodName" required maxlength="80" placeholder="Ej. Tortilla de maíz"><div class="row"><div><label for="prodPrice">Precio de venta ($)</label><input id="prodPrice" type="number" min="0" step=".01" required></div><div><label for="prodUnit">Unidad</label><select id="prodUnit"><option>paquete</option><option>bolsa</option><option>pieza</option><option>caja</option><option>kg</option></select></div></div><button class="primary" type="submit" style="margin-top:12px">Agregar producto</button></form></div>
-<div class="panel"><h3>Catálogo</h3><div id="productTable"></div></div>
-</section>
-
-<section id="reparto">
-<h2>Carga, entregas y sobrantes</h2>
-<div class="panel"><h3>Registrar carga del repartidor</h3><form id="loadForm"><label for="loadDriver">Nombre del repartidor</label><input id="loadDriver" required maxlength="80" placeholder="Nombre"><div class="row"><div><label for="loadDate">Fecha</label><input id="loadDate" type="date" required></div><div><label for="loadProduct">Producto</label><select id="loadProduct" required></select></div></div><div class="row"><div><label for="loadQty">Cantidad cargada</label><input id="loadQty" type="number" min="0" step="1" required></div><div><label for="loadLeft">Sobrantes devueltos</label><input id="loadLeft" type="number" min="0" step="1" value="0" required></div></div><label for="loadNote">Observaciones (opcional)</label><input id="loadNote" maxlength="140"><button class="primary" type="submit" style="margin-top:12px">Guardar registro</button></form></div>
-<div class="panel"><h3>Registros de carga</h3><div id="loadTable"></div></div>
-</section>
-
-<section id="admin">
-<h2>Administrador y respaldo</h2>
-<div class="panel"><h3>Resumen de saldos</h3><div id="balanceTable"></div></div>
-<div class="panel"><h3>Respaldar o restaurar</h3><p class="muted">Descarga una copia de tus productos, clientes, ventas, abonos y registros de carga. Guarda el archivo en un lugar seguro.</p><div class="actions"><button class="primary" onclick="exportBackup()">Descargar respaldo JSON</button><label class="secondary" style="display:inline-flex;align-items:center;gap:8px;cursor:pointer">Restaurar respaldo <input id="importFile" type="file" accept=".json,application/json" style="width:auto;padding:0;border:0"></label></div><button class="danger" onclick="resetAll()" style="margin-top:12px">Borrar todos los datos</button><small class="help">Borrar datos es irreversible si no tienes un respaldo. No lo uses para una prueba si ya capturaste ventas reales.</small></div>
-</section>
-<footer class="muted" style="text-align:center;padding:18px 0">Tortillería Obregón · Versión inicial para pruebas</footer>
+<section id="tab-productos" class="hidden"><div class="panel"><h2>Productos</h2><p class="muted">Agrega tus productos y toma una foto con la cámara del teléfono o elige una imagen guardada.</p>
+<div class="grid"><div><label>Nombre del producto</label><input id="pName" placeholder="Ej. Tortillas de maíz"></div><div><label>Precio de venta ($)</label><input id="pPrice" type="number" min="0" step=".01" placeholder="24.00"></div><div><label>Foto del producto</label><input id="pPhoto" type="file" accept="image/*" capture="environment"></div></div><div class="actions"><button id="saveProduct">Guardar producto</button></div><div id="productMessage" class="muted"></div></div><div class="panel"><h2>Catálogo actual</h2><div id="productList"></div></div></section>
+<section id="tab-historial" class="hidden"><div class="panel"><h2>Historial de ventas</h2><div class="grid"><div><label>Filtrar repartidor</label><select id="historyDriver"></select></div><div><label>Tipo</label><select id="historyType"><option value="">Todas</option><option value="contado">Contado</option><option value="credito">Crédito</option></select></div></div><div id="historyList" style="margin-top:12px"></div></div>
+<div class="panel"><h2>Movimientos de inventario</h2><div id="movementList"></div></div></section>
+<section id="tab-ajustes" class="hidden"><div class="panel"><h2>Configuración</h2><label>Nombre del negocio</label><input id="businessName" value="Tortillería Obregón"><label>Repartidores (uno por línea)</label><textarea id="driversText" rows="4" style="width:100%;padding:10px;border:1px solid #bdcddd;border-radius:9px;font:inherit" placeholder="Repartidor 1&#10;Repartidor 2"></textarea><p class="muted">Los cambios de precios y configuración se aplican en este dispositivo. La aplicación guarda datos localmente; para compartir información entre varios teléfonos se necesita sincronización con servidor.</p><div class="actions"><button id="saveSettings">Guardar configuración</button><button class="secondary" id="exportData">Exportar respaldo JSON</button><button class="secondary" id="importButton">Importar respaldo JSON</button><input id="importFile" class="hidden" type="file" accept="application/json"></div><div id="settingsMessage" class="muted"></div><div class="notice" style="margin-top:12px">Importante: los datos se guardan en este navegador. No borres los datos del sitio sin exportar un respaldo.</div></div></section>
 </main>
 <script>
-const KEY='tortilleriaObregon_v1';
-const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(Number(n)||0);
-const today=()=>new Date().toLocaleDateString('en-CA');
-const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
-const defaults=()=>({products:[
-{id:uid(),name:'Tortillas de maíz',price:24,unit:'paquete'},
-{id:uid(),name:'Totopos',price:32,unit:'bolsa'},
-{id:uid(),name:'Chilaquiles / enchilaquile',price:32,unit:'paquete'},
-{id:uid(),name:'Bolsitas chiquitas enchiladas',price:13,unit:'bolsa'},
-{id:uid(),name:'Totopos enchilados',price:35,unit:'bolsa'},
-{id:uid(),name:'Totopos de queso',price:35,unit:'bolsa'},
-{id:uid(),name:'Bolsas grandes de chile',price:35,unit:'bolsa'},
-{id:uid(),name:'Tostadas',price:13,unit:'bolsa'},
-{id:uid(),name:'Tacos dorados',price:15,unit:'paquete'},
-{id:uid(),name:'Duros',price:30,unit:'bolsa'}],customers:[],sales:[],payments:[],loads:[]});
-let db;
-try{db=JSON.parse(localStorage.getItem(KEY))||defaults()}catch(e){db=defaults()}
-function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
-function showTab(id){document.querySelectorAll('main section').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo(0,0);renderAll()}
-document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
-function customerName(id){return db.customers.find(c=>c.id===id)?.name||'Público general'}
-function productName(id){return db.products.find(p=>p.id===id)?.name||'Producto eliminado'}
-function creditFor(custId){return db.sales.filter(s=>s.type==='credito'&&s.customerId===custId).reduce((a,s)=>a+s.total,0)-db.payments.filter(p=>p.customerId===custId).reduce((a,p)=>a+p.amount,0)}
-function fillSelects(){
-const set=(id,items,first)=>{const el=document.getElementById(id),old=el.value;el.innerHTML=(first?`<option value="">${first}</option>`:'')+items.map(x=>`<option value="${x.id}">${escapeHtml(x.name)}</option>`).join('');if(items.some(x=>x.id===old))el.value=old};
-set('saleProduct',db.products);set('loadProduct',db.products);set('saleCustomer',db.customers,'Venta mostrador / público general');set('payCustomer',db.customers,'Selecciona cliente');
-}
-function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function table(headers,rows){if(!rows.length)return '<div class="empty">Todavía no hay registros.</div>';return `<div class="tablewrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`}
-function renderAll(){
-fillSelects();
-const salesToday=db.sales.filter(s=>s.date===today()), total=salesToday.reduce((a,s)=>a+s.total,0), cash=salesToday.filter(s=>s.type==='contado').reduce((a,s)=>a+s.total,0), credit=salesToday.filter(s=>s.type==='credito').reduce((a,s)=>a+s.total,0);
-document.getElementById('mVentas').textContent=money(total);document.getElementById('mCant').textContent=salesToday.length+' operaciones';document.getElementById('mContado').textContent=money(cash);document.getElementById('mCredito').textContent=money(credit);document.getElementById('mSaldo').textContent=money(db.customers.reduce((a,c)=>a+Math.max(0,creditFor(c.id)),0));
-document.getElementById('recent').innerHTML=table(['Fecha','Cliente / producto','Tipo','Total'],db.sales.slice().reverse().slice(0,5).map(s=>`<tr><td>${s.date}</td><td>${escapeHtml(customerName(s.customerId))}<br><span class="muted">${escapeHtml(productName(s.productId))} × ${s.qty}</span></td><td><span class="pill">${s.type}</span></td><td>${money(s.total)}</td></tr>`));
-const q=(document.getElementById('filterSales')?.value||'').toLowerCase();
-document.getElementById('salesTable').innerHTML=table(['Fecha','Cliente / producto','Tipo','Total','Nota'],db.sales.slice().reverse().filter(s=>(customerName(s.customerId)+' '+productName(s.productId)+' '+(s.note||'')).toLowerCase().includes(q)).map(s=>`<tr><td>${s.date}</td><td>${escapeHtml(customerName(s.customerId))}<br><span class="muted">${escapeHtml(productName(s.productId))} × ${s.qty}</span></td><td>${s.type}</td><td>${money(s.total)}</td><td>${escapeHtml(s.note||'')}</td></tr>`));
-document.getElementById('customerTable').innerHTML=table(['Cliente','Teléfono','Saldo crédito'],db.customers.map(c=>`<tr><td>${escapeHtml(c.name)}<br><span class="muted">${escapeHtml(c.notes||'')}</span></td><td>${escapeHtml(c.phone||'')}</td><td>${money(Math.max(0,creditFor(c.id)))}</td></tr>`));
-document.getElementById('productTable').innerHTML=table(['Producto','Precio','Unidad','Acción'],db.products.map(p=>`<tr><td>${escapeHtml(p.name)}</td><td>${money(p.price)}</td><td>${escapeHtml(p.unit)}</td><td><button class="secondary" onclick="editPrice('${p.id}')">Cambiar precio</button> <button class="danger" onclick="deleteProduct('${p.id}')">Eliminar</button></td></tr>`));
-document.getElementById('loadTable').innerHTML=table(['Fecha','Repartidor','Producto','Cargado','Sobrante','Entregado/vendido'],db.loads.slice().reverse().map(l=>`<tr><td>${l.date}</td><td>${escapeHtml(l.driver)}</td><td>${escapeHtml(productName(l.productId))}</td><td>${l.qty}</td><td>${l.left}</td><td>${Math.max(0,l.qty-l.left)}</td></tr>`));
-document.getElementById('balanceTable').innerHTML=table(['Cliente','Crédito vendido','Abonos','Saldo'],db.customers.map(c=>{let cr=db.sales.filter(s=>s.customerId===c.id&&s.type==='credito').reduce((a,s)=>a+s.total,0),pa=db.payments.filter(p=>p.customerId===c.id).reduce((a,p)=>a+p.amount,0);return `<tr><td>${escapeHtml(c.name)}</td><td>${money(cr)}</td><td>${money(pa)}</td><td><b>${money(Math.max(0,cr-pa))}</b></td></tr>`}));
-updateTotal();
-}
-function updateTotal(){let p=db.products.find(p=>p.id===document.getElementById('saleProduct').value);if(p&&document.activeElement!==document.getElementById('salePrice'))document.getElementById('salePrice').value=p.price;document.getElementById('saleTotal').textContent=money((Number(document.getElementById('saleQty').value)||0)*(Number(document.getElementById('salePrice').value)||0))}
-document.getElementById('saleProduct').addEventListener('change',()=>{let p=db.products.find(p=>p.id===document.getElementById('saleProduct').value);if(p)document.getElementById('salePrice').value=p.price;updateTotal()});
-['saleQty','salePrice'].forEach(id=>document.getElementById(id).addEventListener('input',updateTotal));
-document.getElementById('saleDate').value=today();document.getElementById('payDate').value=today();document.getElementById('loadDate').value=today();
-document.getElementById('saleForm').addEventListener('submit',e=>{e.preventDefault();const p=db.products.find(p=>p.id===document.getElementById('saleProduct').value),qty=Number(document.getElementById('saleQty').value),price=Number(document.getElementById('salePrice').value),type=document.getElementById('saleType').value,cust=document.getElementById('saleCustomer').value;if(!p||qty<=0||price<0)return alert('Revisa producto, cantidad y precio.');if(type==='credito'&&!cust)return alert('Para una venta a crédito, selecciona un cliente registrado.');db.sales.push({id:uid(),date:document.getElementById('saleDate').value,productId:p.id,qty,price,total:qty*price,type,customerId:cust||null,note:document.getElementById('saleNote').value});document.getElementById('saleQty').value=1;document.getElementById('saleNote').value='';save();alert('Venta guardada.');showTab('ventas')});
-document.getElementById('customerForm').addEventListener('submit',e=>{e.preventDefault();db.customers.push({id:uid(),name:document.getElementById('custName').value.trim(),phone:document.getElementById('custPhone').value.trim(),notes:document.getElementById('custNotes').value.trim()});e.target.reset();save();alert('Cliente guardado.')});
-document.getElementById('paymentForm').addEventListener('submit',e=>{e.preventDefault();let customerId=document.getElementById('payCustomer').value,amount=Number(document.getElementById('payAmount').value);if(!customerId||amount<=0)return alert('Selecciona un cliente y un abono válido.');if(amount>Math.max(0,creditFor(customerId))+0.001)return alert('El abono no puede superar el saldo pendiente.');db.payments.push({id:uid(),customerId,amount,date:document.getElementById('payDate').value,note:document.getElementById('payNote').value});e.target.reset();document.getElementById('payDate').value=today();save();alert('Abono guardado.')});
-document.getElementById('productForm').addEventListener('submit',e=>{e.preventDefault();db.products.push({id:uid(),name:document.getElementById('prodName').value.trim(),price:Number(document.getElementById('prodPrice').value),unit:document.getElementById('prodUnit').value});e.target.reset();save();alert('Producto agregado.')});
-document.getElementById('loadForm').addEventListener('submit',e=>{e.preventDefault();let qty=Number(document.getElementById('loadQty').value),left=Number(document.getElementById('loadLeft').value);if(left>qty)return alert('Los sobrantes no pueden superar la cantidad cargada.');db.loads.push({id:uid(),driver:document.getElementById('loadDriver').value.trim(),date:document.getElementById('loadDate').value,productId:document.getElementById('loadProduct').value,qty,left,note:document.getElementById('loadNote').value});e.target.reset();document.getElementById('loadDate').value=today();save();alert('Carga registrada.')});
-document.getElementById('filterSales').addEventListener('input',renderAll);
-function editPrice(id){let p=db.products.find(x=>x.id===id),v=prompt('Nuevo precio para '+p.name, p.price);if(v===null)return;let n=Number(v);if(!Number.isFinite(n)||n<0)return alert('Precio no válido.');p.price=n;save()}
-function deleteProduct(id){if(!confirm('¿Eliminar este producto del catálogo? Las ventas antiguas se conservan.'))return;db.products=db.products.filter(p=>p.id!==id);save()}
-function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='respaldo-tortilleria-obregon-'+today()+'.json';a.click();URL.revokeObjectURL(url)}
-document.getElementById('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!data.products||!data.customers||!data.sales)throw Error();if(confirm('Esto reemplazará los datos actuales. ¿Continuar?')){db={...defaults(),...data};save();alert('Respaldo restaurado.')}}catch(err){alert('No se pudo leer el respaldo. Usa un JSON exportado desde esta aplicación.')}e.target.value=''});
-function resetAll(){if(confirm('¿Seguro que deseas borrar TODOS los datos de esta aplicación?')){if(confirm('Última confirmación: esta acción no se puede deshacer sin respaldo.')){db=defaults();save();alert('Datos borrados.')}}}
-if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(n||0);
+const defaults={business:'Tortillería Obregón',drivers:['Repartidor 1','Repartidor 2'],products:[
+{id:'p1',name:'Tortillas de maíz',price:24,photo:''},{id:'p2',name:'Totopos',price:32,photo:''},{id:'p3',name:'Chilaquiles',price:32,photo:''},{id:'p4',name:'Duros',price:30,photo:''}],sales:[],inventory:{},movements:[],ticketSeq:1};
+let db;try{db=JSON.parse(localStorage.getItem('tortilleriaObregonDB'))||structuredClone(defaults)}catch(e){db=JSON.parse(JSON.stringify(defaults))}
+let cart=[],lastTicket=null;
+function save(){localStorage.setItem('tortilleriaObregonDB',JSON.stringify(db))}
+function id(){return 'x'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function invKey(driver,pid){return driver+'::'+pid}
+function qty(driver,pid){return Number(db.inventory[invKey(driver,pid)]||0)}
+function setQty(driver,pid,n){db.inventory[invKey(driver,pid)]=n}
+function options(select,items,selected){select.innerHTML=items.map(x=>`<option value="${esc(x)}" ${x===selected?'selected':''}>${esc(x)}</option>`).join('')}
+function refreshDrivers(){['saleDriver','invDriver','historyDriver'].forEach((x)=>{let s=$(x),old=s.value;let arr=x==='historyDriver'?['',...db.drivers]:db.drivers;options(s,arr,arr.includes(old)?old:arr[0])});$('driversText').value=db.drivers.join('\n')}
+function refreshProductSelect(){options($('invProduct'),db.products.map(p=>p.id+'|'+p.name),db.products[0]?.id+'|'+db.products[0]?.name)}
+function productPhoto(p){return p.photo||''}
+function renderSaleProducts(){let q=$('productSearch').value.toLowerCase();$('saleProducts').innerHTML=db.products.filter(p=>p.name.toLowerCase().includes(q)).map(p=>`<div class="product">${p.photo?`<img src="${p.photo}" alt="">`:'<div style="width:58px;height:58px;border-radius:9px;background:#e8eef5;display:grid;place-items:center">🌽</div>'}<div class="details"><strong>${esc(p.name)}</strong><span class="money">${money(p.price)}</span></div><button onclick="addToCart('${p.id}')">Agregar</button></div>`).join('')||'<div class="empty">No hay productos que coincidan.</div>'}
+function addToCart(pid){let p=db.products.find(x=>x.id===pid);if(!p)return;let item=cart.find(x=>x.pid===pid);if(item)item.qty++;else cart.push({pid,name:p.name,price:Number(p.price),qty:1});renderCart()}
+function renderCart(){$('cart').innerHTML=cart.length?cart.map((x,i)=>`<div class="itemline" style="align-items:center"><div style="flex:1"><strong>${esc(x.name)}</strong><div class="muted">${money(x.price)} c/u</div></div><div class="qty"><button class="secondary" onclick="changeCart(${i},-1)">−</button><span>${x.qty}</span><button class="secondary" onclick="changeCart(${i},1)">+</button><button class="danger" onclick="removeCart(${i})">×</button></div><strong>${money(x.qty*x.price)}</strong></div>`).join(''):'<div class="empty">Agrega uno o varios productos para armar el ticket.</div>';$('cartTotal').textContent=money(cart.reduce((s,x)=>s+x.qty*x.price,0))}
+function changeCart(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);renderCart()}
+function removeCart(i){cart.splice(i,1);renderCart()}
+function beep(){try{let C=window.AudioContext||window.webkitAudioContext;if(!C)return;let c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=880;g.gain.value=.15;o.start();o.stop(c.currentTime+.18);o.onended=()=>c.close()}catch(e){}}
+function ticketHTML(t){return `<div><strong>${esc(db.business)}</strong><div class="muted">Ticket #${t.num} · ${new Date(t.date).toLocaleString('es-MX')}</div><div>Repartidor: ${esc(t.driver)} · ${t.type==='credito'?'CRÉDITO':'CONTADO'}</div>${t.customer?`<div>Cliente: ${esc(t.customer)}</div>`:''}<hr>${t.items.map(i=>`<div class="itemline"><span>${esc(i.name)} × ${i.qty}</span><strong>${money(i.price*i.qty)}</strong></div>`).join('')}<div class="itemline"><strong>TOTAL</strong><strong>${money(t.total)}</strong></div></div>`}
+$('finishSale').onclick=()=>{if(!cart.length){$('saleMessage').textContent='Agrega por lo menos un producto.';return}let driver=$('saleDriver').value,type=$('saleType').value,customer=$('customer').value.trim();if(type==='credito'&&!customer){$('saleMessage').textContent='Escribe el nombre del cliente para registrar el crédito.';return}
+for(let it of cart){if(qty(driver,it.pid)<it.qty){$('saleMessage').textContent=`Inventario insuficiente de ${it.name} para ${driver}. Disponible: ${qty(driver,it.pid)}. Registra primero la carga en Inventario.`;return}}
+let items=cart.map(x=>({...x}));items.forEach(it=>setQty(driver,it.pid,qty(driver,it.pid)-it.qty));let t={num:db.ticketSeq++,id:id(),date:new Date().toISOString(),driver,type,customer,items,total:items.reduce((s,x)=>s+x.qty*x.price,0)};db.sales.unshift(t);db.movements.unshift({date:t.date,driver,type:'venta',items:items.map(i=>({pid:i.pid,name:i.name,qty:i.qty})),note:'Venta ticket #'+t.num});save();lastTicket=t;$('lastTicket').innerHTML=ticketHTML(t);cart=[];renderCart();renderAll();$('saleMessage').textContent='Venta guardada. Ticket #'+t.num;beep()};
+$('clearCart').onclick=()=>{cart=[];renderCart();$('saleMessage').textContent='Ticket vacío.'};
+$('saleType').onchange=()=> $('customerWrap').classList.toggle('hidden',$('saleType').value!=='credito');
+$('productSearch').oninput=renderSaleProducts;
+$('printTicket').onclick=()=>{if(!lastTicket){$('lastTicket').textContent='Todavía no hay ticket.';return}let w=window.open('','_blank');if(!w){alert('Permite ventanas emergentes para imprimir el ticket.');return}w.document.write(`<html><head><title>Ticket ${lastTicket.num}</title><meta name="viewport" content="width=device-width"></head><body style="font:14px monospace;max-width:320px;margin:20px auto">${ticketHTML(lastTicket)}<script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()};
+$('saveProduct').onclick=async()=>{let name=$('pName').value.trim(),price=Number($('pPrice').value);if(!name||!Number.isFinite(price)||price<0){$('productMessage').textContent='Escribe nombre y precio válido.';return}let photo='';let file=$('pPhoto').files[0];if(file){try{photo=await new Promise((res,rej)=>{let r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}catch(e){}}db.products.push({id:id(),name,price,photo});save();$('pName').value='';$('pPrice').value='';$('pPhoto').value='';$('productMessage').textContent='Producto guardado.';renderAll()};
+function renderProducts(){$('productList').innerHTML=db.products.map(p=>`<div class="product" style="margin:8px 0">${p.photo?`<img src="${p.photo}" alt="">`:'<div style="width:58px;height:58px;background:#e8eef5;border-radius:9px;display:grid;place-items:center">🌽</div>'}<div class="details"><strong>${esc(p.name)}</strong><span class="money">${money(p.price)}</span></div><button class="secondary" onclick="editPrice('${p.id}')">Precio</button><button class="danger" onclick="deleteProduct('${p.id}')">Eliminar</button></div>`).join('')||'<div class="empty">Todavía no hay productos.</div>'}
+window.editPrice=pid=>{let p=db.products.find(x=>x.id===pid),v=prompt('Nuevo precio para '+p.name,p.price);if(v===null)return;let n=Number(v);if(!Number.isFinite(n)||n<0){alert('Precio no válido');return}p.price=n;save();renderAll()};
+window.deleteProduct=pid=>{let p=db.products.find(x=>x.id===pid);if(confirm('¿Eliminar '+p.name+' del catálogo? El historial de ventas se conserva.')){db.products=db.products.filter(x=>x.id!==pid);save();renderAll()}};
+$('saveMovement').onclick=()=>{let driver=$('invDriver').value,pid=$('invProduct').value.split('|')[0],type=$('invType').value,n=Math.floor(Number($('invQty').value));if(!driver||!pid||!Number.isFinite(n)||n<1){$('invMessage').textContent='Selecciona repartidor, producto y cantidad válida.';return}let p=db.products.find(x=>x.id===pid),old=qty(driver,pid);if(type==='ajuste'){setQty(driver,pid,n)}else if(type==='carga'){setQty(driver,pid,old+n)}else if(type==='sobrante'||type==='devolucion'){setQty(driver,pid,old+n)}else if(type==='danado'){if(n>old){$('invMessage').textContent='La cantidad dañada no puede superar la existencia disponible.';return}setQty(driver,pid,old-n)}db.movements.unshift({date:new Date().toISOString(),driver,type,items:[{pid,name:p?.name||pid,qty:n}],note:type==='ajuste'?`Existencia ajustada de ${old} a ${n}`:''});save();$('invMessage').textContent='Movimiento guardado.';renderAll()};
+function renderInventory(){let d=$('invDriver').value;$('inventoryTable').innerHTML=db.products.map(p=>`<div class="itemline"><span>${esc(p.name)}</span><strong>${qty(d,p.id)} piezas</strong></div>`).join('')||'<div class="empty">Agrega productos primero.</div>';
+$('closeRoute').innerHTML=db.products.map(p=>`<div class="grid" style="align-items:end;border-bottom:1px solid var(--line);padding:7px 0"><div><strong>${esc(p.name)}</strong><div class="muted">Esperado: ${qty(d,p.id)}</div></div><div><label>Conteo físico</label><input type="number" min="0" step="1" id="count_${p.id}" value="${qty(d,p.id)}"></div></div>`).join('')}
+$('checkInventory').onclick=()=>{let d=$('invDriver').value;let out=db.products.map(p=>{let actual=Math.max(0,Math.floor(Number($('count_'+p.id)?.value||0))),expected=qty(d,p.id),diff=actual-expected;return `<div class="itemline"><span>${esc(p.name)}<div class="muted">Esperado ${expected} · Contado ${actual}</div></span><strong style="color:${diff===0?'#16803c':'#b42318'}">${diff>0?'+':''}${diff}</strong></div>`}).join('');$('inventoryDiff').innerHTML=out||'No hay productos.'};
+$('invDriver').onchange=()=>{renderInventory();$('inventoryDiff').innerHTML=''};
+function renderHistory(){let d=$('historyDriver').value,type=$('historyType').value;let sales=db.sales.filter(t=>(!d||t.driver===d)&&(!type||t.type===type));$('historyList').innerHTML=sales.map(t=>`<div class="panel" style="margin:8px 0;box-shadow:none"><div class="row"><strong>Ticket #${t.num}</strong><span class="right money">${money(t.total)}</span></div><div class="muted">${new Date(t.date).toLocaleString('es-MX')} · ${esc(t.driver)} · ${t.type==='credito'?'Crédito':'Contado'}${t.customer?' · '+esc(t.customer):''}</div>${t.items.map(i=>`<div class="itemline"><span>${esc(i.name)} × ${i.qty}</span><span>${money(i.qty*i.price)}</span></div>`).join('')}</div>`).join('')||'<div class="empty">No hay ventas con esos filtros.</div>';
+$('movementList').innerHTML=db.movements.slice(0,80).map(m=>`<div class="itemline"><span><strong>${esc(m.type)}</strong><div class="muted">${new Date(m.date).toLocaleString('es-MX')} · ${esc(m.driver)} ${m.note?'· '+esc(m.note):''}</div><div class="small">${(m.items||[]).map(i=>`${esc(i.name)} × ${i.qty}`).join(', ')}</div></span></div>`).join('')||'<div class="empty">Todavía no hay movimientos.</div>'}
+$('historyDriver').onchange=renderHistory;$('historyType').onchange=renderHistory;
+$('saveSettings').onclick=()=>{db.business=$('businessName').value.trim()||'Tortillería Obregón';let names=$('driversText').value.split('\n').map(x=>x.trim()).filter(Boolean);if(names.length)db.drivers=[...new Set(names)];save();refreshDrivers();renderAll();$('settingsMessage').textContent='Configuración guardada.'};
+$('exportData').onclick=()=>{let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='respaldo-tortilleria-obregon.json';a.click();URL.revokeObjectURL(a.href)};
+$('importButton').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let data=JSON.parse(await f.text());if(!data.products||!data.drivers)throw Error();if(confirm('Esto reemplazará los datos guardados en este dispositivo. ¿Continuar?')){db=data;save();refreshDrivers();renderAll();$('settingsMessage').textContent='Respaldo importado.'}}catch(err){$('settingsMessage').textContent='No se pudo importar: archivo inválido.'}e.target.value=''};
+function renderAll(){document.title=(db.business||'Tortillería Obregón')+' · Ventas';$('businessName').value=db.business||'Tortillería Obregón';refreshDrivers();refreshProductSelect();renderSaleProducts();renderProducts();renderCart();renderInventory();renderHistory();if(lastTicket)$('lastTicket').innerHTML=ticketHTML(lastTicket)}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!=='tab-'+b.dataset.tab));if(b.dataset.tab==='inventario')renderInventory();if(b.dataset.tab==='historial')renderHistory()});
 renderAll();
-</script>
-</body>
-</html>
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>

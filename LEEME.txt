@@ -1,27 +1,31 @@
-TORTILLERÍA OBREGÓN — APLICACIÓN INICIAL
+TORTILLERÍA OBREGÓN — VERSIÓN DE PRUEBA
 
-ARCHIVOS:
-- index.html: aplicación
-- manifest.json: datos para instalarla como aplicación web
-- sw.js: caché básica para uso sin conexión después de abrirla una vez
+CONTENIDO
+- index.html: aplicación.
+- manifest.json: permite instalarla como aplicación web.
+- sw.js: caché para abrir la aplicación sin conexión después de la primera visita.
 
-CÓMO PROBAR:
-1. Extrae el ZIP.
-2. Para publicarla, sube los tres archivos a un repositorio de GitHub.
-3. En GitHub, abre Settings > Pages y configura Deploy from a branch, rama main, carpeta /(root).
-4. Espera a que GitHub Pages publique el sitio y abre la dirección que te proporcione.
-5. En Chrome Android, menú ⋮ > Añadir a pantalla principal / Instalar aplicación.
+FUNCIONES
+- Varios productos y cantidades en un solo ticket.
+- Venta de contado y crédito con nombre de cliente.
+- Sonido al terminar una venta (una sola vez por ticket).
+- Catálogo editable, precio y fotos tomadas/subidas desde el teléfono.
+- Inventario por repartidor: carga, ventas descontadas automáticamente, sobrantes, devoluciones, dañados y ajuste de existencia.
+- Comparación de existencia esperada contra conteo físico.
+- Historial de ventas y movimientos.
+- Exportar/importar respaldo JSON.
+- Diseño azul, blanco y amarillo.
 
-FUNCIONES INCLUIDAS:
-- Ventas de contado y crédito
-- Clientes y registro de abonos
-- Catálogo de productos y cambios de precio
-- Carga, sobrantes y cantidad entregada/vendida calculada
-- Resumen diario, historial, respaldo y restauración JSON
+CÓMO PROBAR
+1. Sube los tres archivos (index.html, manifest.json y sw.js) al repositorio de GitHub, en la raíz.
+2. En GitHub abre Settings > Pages y configura Deploy from a branch, rama main, carpeta /(root).
+3. Espera a que GitHub Pages publique y abre la dirección que te proporcione.
+4. Primero abre con internet. En Chrome Android, menú ⋮ > Añadir a pantalla principal o Instalar aplicación.
+5. Después de cargar una vez, prueba abrirla sin internet.
 
-IMPORTANTE:
-- Es una versión inicial para pruebas, no una app nativa APK.
-- Los datos se guardan en el almacenamiento local del navegador del teléfono.
-- No hay sincronización entre teléfonos, usuarios/contraseñas, control de permisos, inventario automático ni respaldo en la nube.
-- No borres los datos del navegador sin descargar primero un respaldo.
-- Antes de usarla como sistema oficial, hay que probarla con datos ficticios y añadir autenticación/sincronización y permisos adecuados.
+IMPORTANTE
+- Esta versión guarda datos en el navegador/dispositivo. No sincroniza automáticamente ventas entre varios teléfonos.
+- Exporta respaldos periódicamente desde Ajustes.
+- Los datos guardados en navegador pueden perderse si se borran los datos del sitio.
+- La selección de repartidor es operativa, no un inicio de sesión seguro; antes de usar con dinero real conviene implementar cuentas y servidor.
+- Las fotos se guardan en el almacenamiento local del navegador; fotos grandes pueden llenar el almacenamiento. Usa imágenes pequeñas.
