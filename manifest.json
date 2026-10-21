@@ -3,7 +3,8 @@
   "short_name": "Tortillería",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#eef4fa",
-  "theme_color": "#0757a6",
-  "description": "Ventas e inventario por repartidor"
+  "background_color": "#f3f6fb",
+  "theme_color": "#164A9A",
+  "description": "Ventas e inventario de Tortillería Obregón",
+  "icons": []
 }

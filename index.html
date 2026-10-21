@@ -2,106 +2,22 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0757a6"><link rel="manifest" href="manifest.json">
-<title>Tortillería Obregón · Ventas</title>
-<style>
-:root{--blue:#0757a6;--blue2:#0b76d1;--yellow:#ffd43b;--white:#fff;--ink:#132238;--bg:#eef4fa;--line:#d7e2ee}
-*{box-sizing:border-box}body{margin:0;font:16px system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
-header{background:var(--blue);color:white;padding:16px 14px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0002}
-header h1{font-size:20px;margin:0}header small{opacity:.9}
-nav{display:flex;gap:7px;overflow:auto;padding:9px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:66px;z-index:4}
-button,.btn{border:0;border-radius:10px;padding:11px 13px;font-weight:700;background:var(--blue);color:white;cursor:pointer;font-size:14px}
-button.secondary{background:#e5edf6;color:var(--blue)}button.yellow{background:var(--yellow);color:#172b42}button.danger{background:#b42318}
-nav button{white-space:nowrap;padding:10px 12px}nav button.active{background:var(--yellow);color:#172b42}
-main{max-width:900px;margin:auto;padding:14px}.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:13px;box-shadow:0 2px 7px #1231}
-h2{font-size:19px;margin:0 0 12px;color:var(--blue)}h3{margin:8px 0;font-size:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
-label{display:block;font-size:13px;font-weight:700;margin:8px 0 4px}input,select{width:100%;padding:11px;border:1px solid #bdcddd;border-radius:9px;font:inherit;background:#fff;color:var(--ink)}
-.row{display:flex;gap:8px;align-items:center}.row>*{flex:1;min-width:0}.muted{color:#64748b;font-size:13px}.money{font-weight:800;color:var(--blue)}.product{border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}.product img{width:58px;height:58px;object-fit:cover;border-radius:9px;background:#e8eef5}.product .details{flex:1;min-width:0}.product strong{display:block}.qty{display:flex;gap:6px;align-items:center}.qty input{width:62px;padding:8px;text-align:center}.itemline{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:8px 0}.hidden{display:none!important}.tag{display:inline-block;background:#e8f2ff;color:var(--blue);padding:3px 8px;border-radius:99px;font-size:12px;font-weight:700}.notice{background:#fff7d6;border:1px solid #f1d56b;padding:10px;border-radius:9px;font-size:13px}.empty{text-align:center;padding:20px;color:#64748b}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1}.photo{width:100%;max-width:90px;border-radius:8px}.small{font-size:12px}.right{text-align:right}
-@media(max-width:420px){main{padding:9px}.panel{padding:11px}header{padding:13px}nav{top:60px}}
-</style></head>
+<meta name="theme-color" content="#164A9A"><meta name="description" content="Ventas e inventario de Tortillería Obregón">
+<link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
+<title>Tortillería Obregón</title>
+</head>
 <body>
-<header><h1>🌽 Tortillería Obregón</h1><small>Ventas e inventario · Funciona sin conexión en este dispositivo</small></header>
-<nav id="nav">
-<button class="active" data-tab="venta">Venta</button><button data-tab="inventario">Inventario</button><button data-tab="productos">Productos</button><button data-tab="historial">Historial</button><button data-tab="ajustes">Ajustes</button>
+<header class="topbar">
+  <div class="brand-mark">TO</div><div class="brand"><strong>Tortillería Obregón</strong><small>Ventas e inventario</small></div>
+  <button id="roleBtn" class="role-pill" title="Cambiar vista">Administrador ▾</button>
+</header>
+<main id="app" class="main"></main>
+<nav id="bottomNav" class="bottom-nav">
+ <button data-page="inicio" class="nav-item active"><span>⌂</span><small>Inicio</small></button>
+ <button data-page="ventas" class="nav-item"><span>🛒</span><small>Ventas</small></button>
+ <button data-page="inventario" class="nav-item"><span>▦</span><small>Inventario</small></button>
+ <button data-page="corte" class="nav-item"><span>▤</span><small>Corte</small></button>
 </nav>
-<main>
-<section id="tab-venta">
-<div class="panel"><h2>Nueva venta / ticket</h2><div class="grid">
-<div><label>Repartidor</label><select id="saleDriver"></select></div>
-<div><label>Tipo de venta</label><select id="saleType"><option value="contado">Contado</option><option value="credito">Crédito</option></select></div>
-<div id="customerWrap" class="hidden"><label>Cliente de crédito</label><input id="customer" placeholder="Nombre del cliente"></div>
-</div><label>Buscar producto</label><input id="productSearch" placeholder="Escribe el nombre del producto…">
-<div id="saleProducts" style="display:grid;gap:8px;margin-top:10px"></div>
-<h3>Productos en este ticket</h3><div id="cart"></div>
-<div class="itemline"><strong>Total del ticket</strong><strong class="money" id="cartTotal">$0.00</strong></div>
-<div class="actions"><button class="yellow" id="finishSale">✓ Terminar venta y emitir ticket</button><button class="secondary" id="clearCart">Vaciar ticket</button></div>
-<div id="saleMessage" class="muted" aria-live="polite"></div></div>
-<div class="panel"><h2>Último ticket</h2><div id="lastTicket" class="muted">Todavía no hay ventas.</div><button class="secondary" id="printTicket">Imprimir / guardar ticket</button></div>
-</section>
-<section id="tab-inventario" class="hidden">
-<div class="panel"><h2>Inventario por repartidor</h2><p class="muted">Registra la carga que sale con cada repartidor. Las ventas se descuentan automáticamente del inventario cargado.</p>
-<label>Selecciona repartidor</label><select id="invDriver"></select>
-<div class="grid"><div><label>Movimiento</label><select id="invType"><option value="carga">Carga inicial / agregar carga</option><option value="sobrante">Sobrantes contados al regresar</option><option value="devolucion">Devoluciones</option><option value="danado">Producto dañado</option><option value="ajuste">Ajuste de existencia contada</option></select></div><div><label>Producto</label><select id="invProduct"></select></div><div><label>Cantidad</label><input id="invQty" type="number" min="1" step="1" value="1"></div></div>
-<div class="actions"><button id="saveMovement">Guardar movimiento</button></div><div id="invMessage" class="muted"></div></div>
-<div class="panel"><h2>Existencia del repartidor</h2><div id="inventoryTable"></div></div>
-<div class="panel"><h2>Cierre de ruta</h2><p class="muted">Compara la existencia esperada con la existencia física contada. Registra el conteo y revisa diferencias.</p><div id="closeRoute"></div><div class="actions"><button class="yellow" id="checkInventory">Comparar existencia esperada vs. contada</button></div><div id="inventoryDiff"></div></div>
-</section>
-<section id="tab-productos" class="hidden"><div class="panel"><h2>Productos</h2><p class="muted">Agrega tus productos y toma una foto con la cámara del teléfono o elige una imagen guardada.</p>
-<div class="grid"><div><label>Nombre del producto</label><input id="pName" placeholder="Ej. Tortillas de maíz"></div><div><label>Precio de venta ($)</label><input id="pPrice" type="number" min="0" step=".01" placeholder="24.00"></div><div><label>Foto del producto</label><input id="pPhoto" type="file" accept="image/*" capture="environment"></div></div><div class="actions"><button id="saveProduct">Guardar producto</button></div><div id="productMessage" class="muted"></div></div><div class="panel"><h2>Catálogo actual</h2><div id="productList"></div></div></section>
-<section id="tab-historial" class="hidden"><div class="panel"><h2>Historial de ventas</h2><div class="grid"><div><label>Filtrar repartidor</label><select id="historyDriver"></select></div><div><label>Tipo</label><select id="historyType"><option value="">Todas</option><option value="contado">Contado</option><option value="credito">Crédito</option></select></div></div><div id="historyList" style="margin-top:12px"></div></div>
-<div class="panel"><h2>Movimientos de inventario</h2><div id="movementList"></div></div></section>
-<section id="tab-ajustes" class="hidden"><div class="panel"><h2>Configuración</h2><label>Nombre del negocio</label><input id="businessName" value="Tortillería Obregón"><label>Repartidores (uno por línea)</label><textarea id="driversText" rows="4" style="width:100%;padding:10px;border:1px solid #bdcddd;border-radius:9px;font:inherit" placeholder="Repartidor 1&#10;Repartidor 2"></textarea><p class="muted">Los cambios de precios y configuración se aplican en este dispositivo. La aplicación guarda datos localmente; para compartir información entre varios teléfonos se necesita sincronización con servidor.</p><div class="actions"><button id="saveSettings">Guardar configuración</button><button class="secondary" id="exportData">Exportar respaldo JSON</button><button class="secondary" id="importButton">Importar respaldo JSON</button><input id="importFile" class="hidden" type="file" accept="application/json"></div><div id="settingsMessage" class="muted"></div><div class="notice" style="margin-top:12px">Importante: los datos se guardan en este navegador. No borres los datos del sitio sin exportar un respaldo.</div></div></section>
-</main>
-<script>
-const $=id=>document.getElementById(id);
-const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(n||0);
-const defaults={business:'Tortillería Obregón',drivers:['Repartidor 1','Repartidor 2'],products:[
-{id:'p1',name:'Tortillas de maíz',price:24,photo:''},{id:'p2',name:'Totopos',price:32,photo:''},{id:'p3',name:'Chilaquiles',price:32,photo:''},{id:'p4',name:'Duros',price:30,photo:''}],sales:[],inventory:{},movements:[],ticketSeq:1};
-let db;try{db=JSON.parse(localStorage.getItem('tortilleriaObregonDB'))||structuredClone(defaults)}catch(e){db=JSON.parse(JSON.stringify(defaults))}
-let cart=[],lastTicket=null;
-function save(){localStorage.setItem('tortilleriaObregonDB',JSON.stringify(db))}
-function id(){return 'x'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function invKey(driver,pid){return driver+'::'+pid}
-function qty(driver,pid){return Number(db.inventory[invKey(driver,pid)]||0)}
-function setQty(driver,pid,n){db.inventory[invKey(driver,pid)]=n}
-function options(select,items,selected){select.innerHTML=items.map(x=>`<option value="${esc(x)}" ${x===selected?'selected':''}>${esc(x)}</option>`).join('')}
-function refreshDrivers(){['saleDriver','invDriver','historyDriver'].forEach((x)=>{let s=$(x),old=s.value;let arr=x==='historyDriver'?['',...db.drivers]:db.drivers;options(s,arr,arr.includes(old)?old:arr[0])});$('driversText').value=db.drivers.join('\n')}
-function refreshProductSelect(){options($('invProduct'),db.products.map(p=>p.id+'|'+p.name),db.products[0]?.id+'|'+db.products[0]?.name)}
-function productPhoto(p){return p.photo||''}
-function renderSaleProducts(){let q=$('productSearch').value.toLowerCase();$('saleProducts').innerHTML=db.products.filter(p=>p.name.toLowerCase().includes(q)).map(p=>`<div class="product">${p.photo?`<img src="${p.photo}" alt="">`:'<div style="width:58px;height:58px;border-radius:9px;background:#e8eef5;display:grid;place-items:center">🌽</div>'}<div class="details"><strong>${esc(p.name)}</strong><span class="money">${money(p.price)}</span></div><button onclick="addToCart('${p.id}')">Agregar</button></div>`).join('')||'<div class="empty">No hay productos que coincidan.</div>'}
-function addToCart(pid){let p=db.products.find(x=>x.id===pid);if(!p)return;let item=cart.find(x=>x.pid===pid);if(item)item.qty++;else cart.push({pid,name:p.name,price:Number(p.price),qty:1});renderCart()}
-function renderCart(){$('cart').innerHTML=cart.length?cart.map((x,i)=>`<div class="itemline" style="align-items:center"><div style="flex:1"><strong>${esc(x.name)}</strong><div class="muted">${money(x.price)} c/u</div></div><div class="qty"><button class="secondary" onclick="changeCart(${i},-1)">−</button><span>${x.qty}</span><button class="secondary" onclick="changeCart(${i},1)">+</button><button class="danger" onclick="removeCart(${i})">×</button></div><strong>${money(x.qty*x.price)}</strong></div>`).join(''):'<div class="empty">Agrega uno o varios productos para armar el ticket.</div>';$('cartTotal').textContent=money(cart.reduce((s,x)=>s+x.qty*x.price,0))}
-function changeCart(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);renderCart()}
-function removeCart(i){cart.splice(i,1);renderCart()}
-function beep(){try{let C=window.AudioContext||window.webkitAudioContext;if(!C)return;let c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=880;g.gain.value=.15;o.start();o.stop(c.currentTime+.18);o.onended=()=>c.close()}catch(e){}}
-function ticketHTML(t){return `<div><strong>${esc(db.business)}</strong><div class="muted">Ticket #${t.num} · ${new Date(t.date).toLocaleString('es-MX')}</div><div>Repartidor: ${esc(t.driver)} · ${t.type==='credito'?'CRÉDITO':'CONTADO'}</div>${t.customer?`<div>Cliente: ${esc(t.customer)}</div>`:''}<hr>${t.items.map(i=>`<div class="itemline"><span>${esc(i.name)} × ${i.qty}</span><strong>${money(i.price*i.qty)}</strong></div>`).join('')}<div class="itemline"><strong>TOTAL</strong><strong>${money(t.total)}</strong></div></div>`}
-$('finishSale').onclick=()=>{if(!cart.length){$('saleMessage').textContent='Agrega por lo menos un producto.';return}let driver=$('saleDriver').value,type=$('saleType').value,customer=$('customer').value.trim();if(type==='credito'&&!customer){$('saleMessage').textContent='Escribe el nombre del cliente para registrar el crédito.';return}
-for(let it of cart){if(qty(driver,it.pid)<it.qty){$('saleMessage').textContent=`Inventario insuficiente de ${it.name} para ${driver}. Disponible: ${qty(driver,it.pid)}. Registra primero la carga en Inventario.`;return}}
-let items=cart.map(x=>({...x}));items.forEach(it=>setQty(driver,it.pid,qty(driver,it.pid)-it.qty));let t={num:db.ticketSeq++,id:id(),date:new Date().toISOString(),driver,type,customer,items,total:items.reduce((s,x)=>s+x.qty*x.price,0)};db.sales.unshift(t);db.movements.unshift({date:t.date,driver,type:'venta',items:items.map(i=>({pid:i.pid,name:i.name,qty:i.qty})),note:'Venta ticket #'+t.num});save();lastTicket=t;$('lastTicket').innerHTML=ticketHTML(t);cart=[];renderCart();renderAll();$('saleMessage').textContent='Venta guardada. Ticket #'+t.num;beep()};
-$('clearCart').onclick=()=>{cart=[];renderCart();$('saleMessage').textContent='Ticket vacío.'};
-$('saleType').onchange=()=> $('customerWrap').classList.toggle('hidden',$('saleType').value!=='credito');
-$('productSearch').oninput=renderSaleProducts;
-$('printTicket').onclick=()=>{if(!lastTicket){$('lastTicket').textContent='Todavía no hay ticket.';return}let w=window.open('','_blank');if(!w){alert('Permite ventanas emergentes para imprimir el ticket.');return}w.document.write(`<html><head><title>Ticket ${lastTicket.num}</title><meta name="viewport" content="width=device-width"></head><body style="font:14px monospace;max-width:320px;margin:20px auto">${ticketHTML(lastTicket)}<script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()};
-$('saveProduct').onclick=async()=>{let name=$('pName').value.trim(),price=Number($('pPrice').value);if(!name||!Number.isFinite(price)||price<0){$('productMessage').textContent='Escribe nombre y precio válido.';return}let photo='';let file=$('pPhoto').files[0];if(file){try{photo=await new Promise((res,rej)=>{let r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}catch(e){}}db.products.push({id:id(),name,price,photo});save();$('pName').value='';$('pPrice').value='';$('pPhoto').value='';$('productMessage').textContent='Producto guardado.';renderAll()};
-function renderProducts(){$('productList').innerHTML=db.products.map(p=>`<div class="product" style="margin:8px 0">${p.photo?`<img src="${p.photo}" alt="">`:'<div style="width:58px;height:58px;background:#e8eef5;border-radius:9px;display:grid;place-items:center">🌽</div>'}<div class="details"><strong>${esc(p.name)}</strong><span class="money">${money(p.price)}</span></div><button class="secondary" onclick="editPrice('${p.id}')">Precio</button><button class="danger" onclick="deleteProduct('${p.id}')">Eliminar</button></div>`).join('')||'<div class="empty">Todavía no hay productos.</div>'}
-window.editPrice=pid=>{let p=db.products.find(x=>x.id===pid),v=prompt('Nuevo precio para '+p.name,p.price);if(v===null)return;let n=Number(v);if(!Number.isFinite(n)||n<0){alert('Precio no válido');return}p.price=n;save();renderAll()};
-window.deleteProduct=pid=>{let p=db.products.find(x=>x.id===pid);if(confirm('¿Eliminar '+p.name+' del catálogo? El historial de ventas se conserva.')){db.products=db.products.filter(x=>x.id!==pid);save();renderAll()}};
-$('saveMovement').onclick=()=>{let driver=$('invDriver').value,pid=$('invProduct').value.split('|')[0],type=$('invType').value,n=Math.floor(Number($('invQty').value));if(!driver||!pid||!Number.isFinite(n)||n<1){$('invMessage').textContent='Selecciona repartidor, producto y cantidad válida.';return}let p=db.products.find(x=>x.id===pid),old=qty(driver,pid);if(type==='ajuste'){setQty(driver,pid,n)}else if(type==='carga'){setQty(driver,pid,old+n)}else if(type==='sobrante'||type==='devolucion'){setQty(driver,pid,old+n)}else if(type==='danado'){if(n>old){$('invMessage').textContent='La cantidad dañada no puede superar la existencia disponible.';return}setQty(driver,pid,old-n)}db.movements.unshift({date:new Date().toISOString(),driver,type,items:[{pid,name:p?.name||pid,qty:n}],note:type==='ajuste'?`Existencia ajustada de ${old} a ${n}`:''});save();$('invMessage').textContent='Movimiento guardado.';renderAll()};
-function renderInventory(){let d=$('invDriver').value;$('inventoryTable').innerHTML=db.products.map(p=>`<div class="itemline"><span>${esc(p.name)}</span><strong>${qty(d,p.id)} piezas</strong></div>`).join('')||'<div class="empty">Agrega productos primero.</div>';
-$('closeRoute').innerHTML=db.products.map(p=>`<div class="grid" style="align-items:end;border-bottom:1px solid var(--line);padding:7px 0"><div><strong>${esc(p.name)}</strong><div class="muted">Esperado: ${qty(d,p.id)}</div></div><div><label>Conteo físico</label><input type="number" min="0" step="1" id="count_${p.id}" value="${qty(d,p.id)}"></div></div>`).join('')}
-$('checkInventory').onclick=()=>{let d=$('invDriver').value;let out=db.products.map(p=>{let actual=Math.max(0,Math.floor(Number($('count_'+p.id)?.value||0))),expected=qty(d,p.id),diff=actual-expected;return `<div class="itemline"><span>${esc(p.name)}<div class="muted">Esperado ${expected} · Contado ${actual}</div></span><strong style="color:${diff===0?'#16803c':'#b42318'}">${diff>0?'+':''}${diff}</strong></div>`}).join('');$('inventoryDiff').innerHTML=out||'No hay productos.'};
-$('invDriver').onchange=()=>{renderInventory();$('inventoryDiff').innerHTML=''};
-function renderHistory(){let d=$('historyDriver').value,type=$('historyType').value;let sales=db.sales.filter(t=>(!d||t.driver===d)&&(!type||t.type===type));$('historyList').innerHTML=sales.map(t=>`<div class="panel" style="margin:8px 0;box-shadow:none"><div class="row"><strong>Ticket #${t.num}</strong><span class="right money">${money(t.total)}</span></div><div class="muted">${new Date(t.date).toLocaleString('es-MX')} · ${esc(t.driver)} · ${t.type==='credito'?'Crédito':'Contado'}${t.customer?' · '+esc(t.customer):''}</div>${t.items.map(i=>`<div class="itemline"><span>${esc(i.name)} × ${i.qty}</span><span>${money(i.qty*i.price)}</span></div>`).join('')}</div>`).join('')||'<div class="empty">No hay ventas con esos filtros.</div>';
-$('movementList').innerHTML=db.movements.slice(0,80).map(m=>`<div class="itemline"><span><strong>${esc(m.type)}</strong><div class="muted">${new Date(m.date).toLocaleString('es-MX')} · ${esc(m.driver)} ${m.note?'· '+esc(m.note):''}</div><div class="small">${(m.items||[]).map(i=>`${esc(i.name)} × ${i.qty}`).join(', ')}</div></span></div>`).join('')||'<div class="empty">Todavía no hay movimientos.</div>'}
-$('historyDriver').onchange=renderHistory;$('historyType').onchange=renderHistory;
-$('saveSettings').onclick=()=>{db.business=$('businessName').value.trim()||'Tortillería Obregón';let names=$('driversText').value.split('\n').map(x=>x.trim()).filter(Boolean);if(names.length)db.drivers=[...new Set(names)];save();refreshDrivers();renderAll();$('settingsMessage').textContent='Configuración guardada.'};
-$('exportData').onclick=()=>{let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='respaldo-tortilleria-obregon.json';a.click();URL.revokeObjectURL(a.href)};
-$('importButton').onclick=()=>$('importFile').click();
-$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let data=JSON.parse(await f.text());if(!data.products||!data.drivers)throw Error();if(confirm('Esto reemplazará los datos guardados en este dispositivo. ¿Continuar?')){db=data;save();refreshDrivers();renderAll();$('settingsMessage').textContent='Respaldo importado.'}}catch(err){$('settingsMessage').textContent='No se pudo importar: archivo inválido.'}e.target.value=''};
-function renderAll(){document.title=(db.business||'Tortillería Obregón')+' · Ventas';$('businessName').value=db.business||'Tortillería Obregón';refreshDrivers();refreshProductSelect();renderSaleProducts();renderProducts();renderCart();renderInventory();renderHistory();if(lastTicket)$('lastTicket').innerHTML=ticketHTML(lastTicket)}
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!=='tab-'+b.dataset.tab));if(b.dataset.tab==='inventario')renderInventory();if(b.dataset.tab==='historial')renderHistory()});
-renderAll();
-if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
-</script></body></html>
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body></html>
